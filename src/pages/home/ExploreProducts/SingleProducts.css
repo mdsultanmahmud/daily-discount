@@ -1,0 +1,14 @@
+.img-container{
+    overflow: hidden;
+}
+
+.btn-container{
+    top: 100%;
+    left: 30%;
+    transform: translateX(-20%);
+    transition: all ease-in-out 0.4s;
+}
+
+.img-container:hover > .btn-container{
+    top: 50%;
+}
