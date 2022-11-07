@@ -22,7 +22,7 @@ const ExploreProducts = () => {
                 ></SingleProducts>)   
             }
             </div>
-            <button className='btn btn-secondary mx-auto block my-8'>More Products</button>
+            <button className='bg-gradient-to-r from-red-800 to-green-400 hover:from-green-400 hover:to-indigo-600 text-xl font-bold text-white mx-auto block my-8 px-8 py-3 rounded'>More Products</button>
         </div>
     );
 };
