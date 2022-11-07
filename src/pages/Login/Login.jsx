@@ -1,10 +1,14 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 const Login = () => {
     const [passStatus, setPassStatus] = useState(false)
     const { LoginUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
     const handleLogin = event => {
         event.preventDefault()
         const form = event.target
@@ -15,6 +19,7 @@ const Login = () => {
                 const user = res.user
                 if (user.uid) {
                     toast.success('Login successfully')
+                    navigate(from, { replace: true })
                 }
             })
             .catch(err => {

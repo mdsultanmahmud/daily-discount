@@ -6,6 +6,8 @@ import Login from "./pages/Login/Login"
 import Register from "./pages/Register/Register"
 import Shop from "./pages/Shop/Shop"
 import {Toaster} from 'react-hot-toast'
+import Checkout from "./pages/Checkout/Checkout"
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes"
 function App() {
   const router = createBrowserRouter([
     {
@@ -30,7 +32,11 @@ function App() {
         },
         {
           path:'/cart',
-          element:<Cart></Cart>
+          element:<PrivateRoutes><Cart></Cart></PrivateRoutes>
+        },
+        {
+          path:'/checkout/:id',
+          element:<PrivateRoutes><Checkout></Checkout></PrivateRoutes>
         }
       ]
     }
