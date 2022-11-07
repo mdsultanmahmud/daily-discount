@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUmbrellaBeach} from '@fortawesome/free-solid-svg-icons'
 const ExploreProducts = () => {
     const [products, setProducts] = useState([])
-    console.log(products[0])
     useEffect(() =>{
         fetch('https://fakestoreapi.com/products')
         .then(res => res.json())

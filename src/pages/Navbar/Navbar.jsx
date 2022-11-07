@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 const Navbar = () => {
-
+    const { user,Logout } = useContext(AuthContext)
+    const handleLogout = () =>{
+        Logout()
+        .then(res =>{
+            toast('Logout successfully!!')
+        })
+        .catch(err =>{
+            console.log(err) 
+            toast.error(err.message)
+        })
+    }
     const menuList = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/shop'>Shop</Link></li>
         <li><Link to='/cart'>Cart</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        <li><Link to={'/register'} >Register</Link></li>
     </>
 
     return (
@@ -26,13 +38,22 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0 font-semibold">
-                   {
-                    menuList
-                   }
+                    {
+                        menuList
+                    }
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/register'} className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-green-500 hover:to-red-700 px-8 py-3 rounded font-semibold text-xl hover:text-white block mx-auto my-4">Register</Link>
+
+                {
+                    user?.displayName ?
+                        <>
+                            <li>Welcome, {user?.displayName.slice(0,7)}...</li>
+                            <li onClick={handleLogout} className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-green-500 hover:to-red-700 px-8 py-3 rounded font-semibold text-xl hover:text-white block mx-auto my-4 cursor-pointer">Logout</li>
+                        </>
+                        :
+                       <Link to='/login' className="bg-gradient-to-r from-purple-400 to-blue-500 hover:from-green-500 hover:to-red-700 px-8 py-3 rounded font-semibold text-xl hover:text-white block mx-auto my-4 cursor-pointer">Login</Link>
+                }
             </div>
         </div>
     );
