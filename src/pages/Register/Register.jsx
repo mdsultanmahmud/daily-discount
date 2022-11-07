@@ -6,7 +6,6 @@ const Register = () => {
     const [passStatus, setPassStatus] = useState(false)
     const [confrimPass, setConfirmPass] = useState(false)
     const {user} = useContext(AuthContext)
-    console.log(user?.email)
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url("${regsiter}")`, backgroundAttachment:'fixed' }}>
             <div className="hero-overlay bg-opacity-60"></div>
